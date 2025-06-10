@@ -1,0 +1,4 @@
+environment: Test
+configControllerEnabled: false
+servicePort: 8080
+serviceType: LoadBalancer

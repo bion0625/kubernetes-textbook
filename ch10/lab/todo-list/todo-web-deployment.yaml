@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-web
+  labels:
+    kiamol: ch10-lab
+spec:
+  selector:
+    matchLabels:
+      app: todo-web
+      environment: test
+  template:
+    metadata:
+      labels:
+        app: todo-web
+        environment: test
+    spec:
+      containers:
+        - name: web
+          image: kiamol/ch04-todo-list
+          env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Test
+          volumeMounts:
+            - name: config
+              mountPath: "/app/config"
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: todo-web-config
